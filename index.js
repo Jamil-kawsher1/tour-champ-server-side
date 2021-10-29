@@ -27,6 +27,12 @@ async function run() {
             res.json(result);
 
         })
+        // app.get or viwe all service 
+        app.get('/services', async (req, res) => {
+            const cursor = services.find({});
+            const result = await cursor.toArray();
+            res.send(result);
+        })
 
 
     }
