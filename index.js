@@ -34,6 +34,22 @@ async function run() {
             res.send(result);
         })
 
+        // single Service
+        app.get('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await services.findOne(query)
+            res.send(result);
+        })
+
+        //placeorder
+        app.post('/placeorder', async (req, res) => {
+            const neworder = req.body;
+            const result = await order.insertOne(neworder);
+            res.json(result);
+
+        })
+
 
     }
     finally {
