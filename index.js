@@ -67,6 +67,13 @@ async function run() {
             res.json(result);
         });
 
+        //display all user order
+        app.get('/allorders', async (req, res) => {
+            const cursor = order.find({});
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
 
     }
     finally {
