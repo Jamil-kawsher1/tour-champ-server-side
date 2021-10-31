@@ -50,6 +50,23 @@ async function run() {
 
         })
 
+        //my order
+        app.get("/myorder/:email", async (req, res) => {
+            const result = await order.find({
+                useremail: req.params.email,
+            }).toArray();
+            res.send(result);
+        })
+
+        // delete a single order
+        app.delete("/deleteorder/:id", async (req, res) => {
+            console.log(req.params.id);
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await order.deleteOne(query);
+            res.json(result);
+        });
+
 
     }
     finally {
