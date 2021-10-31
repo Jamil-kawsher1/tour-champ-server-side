@@ -74,6 +74,21 @@ async function run() {
             res.send(result);
         })
 
+        // put update
+        app.put("/orderstatus/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+
+            const updateDoc = {
+                $set: {
+                    orderstatus: "Confirmed"
+                },
+            };
+
+            const result = await order.updateOne(query, updateDoc);
+            res.json(result);
+        });
+
 
     }
     finally {
